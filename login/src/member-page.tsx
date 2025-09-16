@@ -139,7 +139,7 @@ export async function getSourceIds(customerId: string, env: Env): Promise<string
     const sources: unknown = customer.sources;
     console.debug(customer.sources);
     if (isExpandedSource(sources)) {
-      return sources.data.filter((source) => source.object === 'bank_account').map(({ id }) => id);
+      return sources.data.filter((source) => source.object === 'bank_account' && source.type === 'ach_credit_transfer').map(({ id }) => id);
     }
   }
   return [];
